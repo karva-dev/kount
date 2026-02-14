@@ -1,0 +1,13 @@
+- ALWAYS attempt to add a test case for changed behavior. Get your tests to pass — if you didn't run the tests, your code does not work.
+- PREFER integration tests over unit tests
+- PREFER running specific tests over running the entire test suite
+- ALWAYS run `cargo nextest run` to run all tests.
+- FOLLOW existing code style. Check neighboring files for patterns.
+- AVOID writing significant amounts of new code. Look for existing methods and utilities first.
+- AVOID using `panic!`, `unreachable!`, `.unwrap()`, unsafe code, and clippy rule ignores. Encode constraints in the type system instead.
+- PREFER patterns like `if let` to handle fallibility
+- PREFER `#[expect()]` over `#[allow()]` if clippy must be disabled
+- PREFER let chains (`if let` combined with `&&`) over nested `if let` statements
+- PREFER short imports over fully-qualified paths for readability.
+- AVOID redundant comments and section separators (e.g., `// --- Section ---`) in test files. Use comments to explain invariants and why something unusual was done, not to narrate code.
+- PREFER function comments over inline comments.

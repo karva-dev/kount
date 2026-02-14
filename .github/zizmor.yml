@@ -1,0 +1,11 @@
+# Configuration for the zizmor static analysis tool, run via pre-commit in CI
+# https://docs.zizmor.sh/configuration/
+rules:
+  template-injection:
+    ignore:
+      - release.yml
+  secrets-inherit:
+    disable: true
+  excessive-permissions:
+    ignore:
+      - release.yml

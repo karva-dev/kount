@@ -1,0 +1,12 @@
+[package]
+name = "kount_cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+kount_count = { path = "../kount_count" }
+
+[lints]
+workspace = true
