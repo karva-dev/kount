@@ -2,8 +2,8 @@
 use std::cmp::max;
 use std::path::PathBuf;
 
-use anyhow::{Result, bail};
-use clap::{CommandFactory, Command as ClapCommand};
+use anyhow::{bail, Result};
+use clap::{Command as ClapCommand, CommandFactory};
 use itertools::Itertools;
 use kount_cli::Args as KountArgs;
 use pretty_assertions::StrComparison;
@@ -45,10 +45,16 @@ pub(crate) fn main(args: &CliArgs) -> Result<()> {
                 }
             }
             Err(err) if err.kind() == std::io::ErrorKind::NotFound => {
-                bail!("{filename} not found, please run `{}`", crate::REGENERATE_ALL_COMMAND);
+                bail!(
+                    "{filename} not found, please run `{}`",
+                    crate::REGENERATE_ALL_COMMAND
+                );
             }
             Err(err) => {
-                bail!("{filename} changed, please run `{}`:\n{err}", crate::REGENERATE_ALL_COMMAND);
+                bail!(
+                    "{filename} changed, please run `{}`:\n{err}",
+                    crate::REGENERATE_ALL_COMMAND
+                );
             }
         },
         Mode::Write => match fs_err::read_to_string(&reference_path) {
@@ -65,7 +71,10 @@ pub(crate) fn main(args: &CliArgs) -> Result<()> {
                 fs_err::write(reference_path, reference_string.as_bytes())?;
             }
             Err(err) => {
-                bail!("{filename} changed, please run `{}`:\n{err}", crate::REGENERATE_ALL_COMMAND);
+                bail!(
+                    "{filename} changed, please run `{}`:\n{err}",
+                    crate::REGENERATE_ALL_COMMAND
+                );
             }
         },
     }
@@ -267,7 +276,7 @@ fn emit_possible_options(opt: &clap::Arg, output: &mut String) {
 mod tests {
     use anyhow::Result;
 
-    use super::{CliArgs, Mode, main};
+    use super::{main, CliArgs, Mode};
 
     #[test]
     #[cfg(unix)]

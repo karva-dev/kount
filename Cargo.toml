@@ -6,6 +6,7 @@ resolver = "2"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
+repository = "https://github.com/karva-dev/kount"
 
 [workspace.lints.clippy]
 pedantic = { level = "warn", priority = -2 }

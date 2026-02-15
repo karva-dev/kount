@@ -49,9 +49,7 @@ fn main() -> Result<ExitCode> {
     match command {
         Command::GenerateCliReference(args) => generate_cli_reference::main(&args)?,
         Command::GenerateAll => {
-            generate_cli_reference::main(&generate_cli_reference::CliArgs {
-                mode: Mode::Write,
-            })?;
+            generate_cli_reference::main(&generate_cli_reference::CliArgs { mode: Mode::Write })?;
         }
     }
     Ok(ExitCode::SUCCESS)
