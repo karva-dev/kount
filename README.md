@@ -1,5 +1,7 @@
 # kount (0.0.1-alpha.0)
 
+[![codecov](https://codecov.io/github/karva-dev/kount/graph/badge.svg?token=6ETPKYTI5L)](https://codecov.io/github/karva-dev/kount)
+
 A fast line counter for files and directories, written in Rust.
 
 ## Installation

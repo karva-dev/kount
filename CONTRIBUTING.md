@@ -9,7 +9,7 @@ Thanks for your interest in contributing to Kount!
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/MatthewMckee4/kount.git
+   git clone https://github.com/karva-dev/kount.git
    cd kount
    ```
 
