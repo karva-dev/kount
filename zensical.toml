@@ -1,10 +1,10 @@
 [project]
 site_name = "Kount"
-site_url = "https://matthewmckee4.github.io/kount"
+site_url = "https://karva-dev.github.io/kount"
 site_description = "A fast line counter CLI tool, written in Rust"
 site_author = "Matthew McKee"
-repo_url = "https://github.com/MatthewMckee4/kount"
-repo_name = "MatthewMckee4/kount"
+repo_url = "https://github.com/karva-dev/kount"
+repo_name = "karva-dev/kount"
 
 docs_dir = "docs"
 site_dir = "site"
