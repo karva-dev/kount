@@ -2,12 +2,6 @@
 
 A fast line counter for files and directories, written in Rust.
 
-## Installation
-
-```bash
-cargo install kount
-```
-
 ## Usage
 
 ```bash
@@ -32,7 +26,7 @@ kount --no-ignore .
 
 ## Output
 
-```
+```text
  Lines  File
 ──────  ────────────────────────────
    152  src/walker.rs
@@ -45,7 +39,7 @@ kount --no-ignore .
 ## Options
 
 | Option | Description |
-|--------|-------------|
+| ------ | ----------- |
 | `-e, --ext <EXT>` | Filter by extension (comma-separated) |
 | `-g, --glob <GLOB>` | Filter by glob pattern (repeatable) |
 | `-s, --sort <SORT>` | Sort: `lines` (default), `name`, `none` |

@@ -5,28 +5,29 @@ Thanks for your interest in contributing to Kount!
 ## Development Setup
 
 1. Install Rust via [rustup](https://rustup.rs/)
-2. Clone the repository:
 
-    ```bash
-    git clone https://github.com/MatthewMckee4/kount.git
-    cd kount
-    ```
+1. Clone the repository:
 
-3. Build:
+   ```bash
+   git clone https://github.com/MatthewMckee4/kount.git
+   cd kount
+   ```
 
-    ```bash
-    cargo build
-    ```
+1. Build:
 
-4. Run tests:
+   ```bash
+   cargo build
+   ```
 
-    ```bash
-    cargo nextest run
-    ```
+1. Run tests:
+
+   ```bash
+   cargo nextest run
+   ```
 
 ## Project Structure
 
-```
+```text
 crates/
 ├── kount/          # Binary crate (entry point, output formatting)
 ├── kount_cli/      # CLI argument parsing (clap)
