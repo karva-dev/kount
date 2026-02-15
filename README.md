@@ -1,4 +1,4 @@
-# kount
+# kount (0.0.1-alpha.0)
 
 A fast line counter for files and directories, written in Rust.
 
