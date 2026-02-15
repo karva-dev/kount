@@ -1,5 +1,5 @@
 [release]
-current-version = "0.1.0"
+current-version = "0.0.0"
 
 version-files = [
     "crates/kount/Cargo.toml",
@@ -14,14 +14,17 @@ confirm = true
 
 [changelog.section-labels]
 "Bug Fixes" = ["bug"]
-"Changelog" = ["changelog"]
 "New Features" = ["enhancement"]
 "CLI" = ["cli"]
 "Documentation" = ["documentation"]
 "Performance" = ["performance"]
+"Testing" = ["testing"]
+"Counting" = ["counting"]
+"Output" = ["output"]
+"Filtering" = ["filtering"]
 
 [changelog]
 ignore-contributors = ["dependabot[bot]", "Copilot"]
-ignore-labels = ["internal", "ci", "duplicate", "rust", "wontfix", "needs-decision"]
+ignore-labels = ["internal", "ci", "duplicate", "rust", "wontfix", "needs-decision", "good first issue", "help wanted", "invalid", "question", "release", "dependencies"]
 include-contributors = true
 changelog-heading = "{version}"

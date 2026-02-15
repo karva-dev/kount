@@ -12,6 +12,7 @@ dev_addr = "localhost:3000"
 
 nav = [
     { "Home" = "index.md"},
+    { "Installation" = "installation.md"},
     { "Reference" = [
         { "CLI" = "reference/cli.md"},
     ]},

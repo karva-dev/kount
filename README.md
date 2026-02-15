@@ -2,6 +2,16 @@
 
 A fast line counter for files and directories, written in Rust.
 
+## Installation
+
+```bash
+# On macOS and Linux.
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/karva-dev/kount/releases/latest/download/kount-installer.sh | sh
+
+# On Windows.
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/karva-dev/kount/releases/latest/download/kount-installer.ps1 | iex"
+```
+
 ## Usage
 
 ```bash
