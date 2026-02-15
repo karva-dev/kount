@@ -1,7 +1,7 @@
 [workspace]
 members = ["cargo:."]
 packages = ["kount"]
-version = "0.1.0"
+version = "0.0.0"
 
 # Config for 'dist'
 [dist]
@@ -37,6 +37,7 @@ install-path = ["$XDG_BIN_HOME/", "$XDG_DATA_HOME/../bin", "~/.local/bin"]
 recursive-tarball = true
 # Which phase dist should use to create the GitHub release
 github-release = "announce"
+post-announce-jobs = ["./publish-docs"]
 
 [dist.github-action-commits]
 "actions/checkout" = "1af3b93b6815bc44a9784bd300feb67ff0d1eeb3" # v6.0.0

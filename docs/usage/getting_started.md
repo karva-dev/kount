@@ -2,16 +2,12 @@
 
 ## Installation
 
-### From source
-
 ```bash
-cargo install --path crates/kount
-```
+# On macOS and Linux.
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/karva-dev/kount/releases/latest/download/kount-installer.sh | sh
 
-### From crates.io
-
-```bash
-cargo install kount
+# On Windows.
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/karva-dev/kount/releases/latest/download/kount-installer.ps1 | iex"
 ```
 
 ## Quick Start
