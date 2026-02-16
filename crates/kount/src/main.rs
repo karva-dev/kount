@@ -14,11 +14,11 @@ fn run() -> i32 {
     let result = kount_count::count(&config);
 
     let print_result = if args.json {
-        print_json(&result)
+        print_json(&result, args.top)
     } else if args.summary {
-        print_summary(&result)
+        print_summary(&result, args.top)
     } else {
-        print_table(&result)
+        print_table(&result, args.top)
     };
 
     if let Err(e) = print_result {

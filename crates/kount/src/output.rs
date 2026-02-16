@@ -2,7 +2,7 @@ use std::io::{self, Write};
 
 use kount_count::CountResult;
 
-pub fn print_table(result: &CountResult) -> io::Result<()> {
+pub fn print_table(result: &CountResult, top: Option<usize>) -> io::Result<()> {
     let stdout = io::stdout();
     let mut out = stdout.lock();
 
@@ -24,7 +24,12 @@ pub fn print_table(result: &CountResult) -> io::Result<()> {
         width = width
     )?;
 
-    for file in &result.files {
+    let files = match top {
+        Some(n) => &result.files[..n.min(result.files.len())],
+        None => &result.files,
+    };
+
+    for file in files {
         writeln!(
             out,
             "{:>width$}  {}",
@@ -52,13 +57,24 @@ pub fn print_table(result: &CountResult) -> io::Result<()> {
     Ok(())
 }
 
-pub fn print_json(result: &CountResult) -> io::Result<()> {
-    serde_json::to_writer_pretty(io::stdout().lock(), result)?;
+pub fn print_json(result: &CountResult, top: Option<usize>) -> io::Result<()> {
+    match top {
+        Some(n) => {
+            let truncated = CountResult {
+                files: result.files[..n.min(result.files.len())].to_vec(),
+                ..result.clone()
+            };
+            serde_json::to_writer_pretty(io::stdout().lock(), &truncated)?;
+        }
+        None => {
+            serde_json::to_writer_pretty(io::stdout().lock(), result)?;
+        }
+    }
     writeln!(io::stdout().lock())?;
     Ok(())
 }
 
-pub fn print_summary(result: &CountResult) -> io::Result<()> {
+pub fn print_summary(result: &CountResult, _top: Option<usize>) -> io::Result<()> {
     let stdout = io::stdout();
     let mut out = stdout.lock();
 
