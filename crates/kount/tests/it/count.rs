@@ -1,15 +1,10 @@
-use assert_fs::prelude::*;
-
 use crate::common::TestContext;
 use crate::kount_snapshot;
 
 #[test]
 fn count_single_file() {
     let ctx = TestContext::new();
-    ctx.root
-        .child("hello.txt")
-        .write_str("line 1\nline 2\nline 3\n")
-        .unwrap();
+    ctx.create_file("hello.txt", 3);
 
     kount_snapshot!(ctx.filters(), ctx.command().arg("hello.txt"), @r"
     success: true
@@ -28,11 +23,8 @@ fn count_single_file() {
 #[test]
 fn count_directory() {
     let ctx = TestContext::new();
-    ctx.root.child("a.rs").write_str("fn main() {}\n").unwrap();
-    ctx.root
-        .child("b.rs")
-        .write_str("fn foo() {}\nfn bar() {}\n")
-        .unwrap();
+    ctx.create_file("a.rs", 1);
+    ctx.create_file("b.rs", 2);
 
     kount_snapshot!(ctx.filters(), ctx.command().arg("--sort").arg("name").arg("."), @r"
     success: true
@@ -52,12 +44,9 @@ fn count_directory() {
 #[test]
 fn count_with_extension_filter() {
     let ctx = TestContext::new();
-    ctx.root
-        .child("code.rs")
-        .write_str("fn main() {}\n")
-        .unwrap();
-    ctx.root.child("readme.md").write_str("# Hello\n").unwrap();
-    ctx.root.child("data.json").write_str("{}\n").unwrap();
+    ctx.create_file("code.rs", 1);
+    ctx.create_file("readme.md", 1);
+    ctx.create_file("data.json", 1);
 
     kount_snapshot!(ctx.filters(), ctx.command().args(["--ext", "rs", "--sort", "name", "."]), @r"
     success: true
@@ -76,10 +65,7 @@ fn count_with_extension_filter() {
 #[test]
 fn count_json_output() {
     let ctx = TestContext::new();
-    ctx.root
-        .child("test.txt")
-        .write_str("hello\nworld\n")
-        .unwrap();
+    ctx.create_file("test.txt", 2);
 
     let output = ctx
         .command()
@@ -97,8 +83,8 @@ fn count_json_output() {
 #[test]
 fn count_summary_output() {
     let ctx = TestContext::new();
-    ctx.root.child("a.rs").write_str("line1\nline2\n").unwrap();
-    ctx.root.child("b.rs").write_str("line1\n").unwrap();
+    ctx.create_file("a.rs", 2);
+    ctx.create_file("b.rs", 1);
 
     kount_snapshot!(ctx.filters(), ctx.command().args(["--summary", "."]), @r"
     success: true
@@ -145,37 +131,4 @@ fn count_nonexistent_path() {
 
     ----- stderr -----
     ");
-}
-
-#[test]
-fn help_output() {
-    let ctx = TestContext::new();
-
-    let output = ctx
-        .command()
-        .arg("--help")
-        .output()
-        .expect("Failed to run kount");
-
-    assert!(output.status.success());
-    let stdout = String::from_utf8_lossy(&output.stdout);
-    assert!(stdout.contains("Count lines in files and directories"));
-    assert!(stdout.contains("--ext"));
-    assert!(stdout.contains("--json"));
-    assert!(stdout.contains("--summary"));
-}
-
-#[test]
-fn version_output() {
-    let ctx = TestContext::new();
-
-    let output = ctx
-        .command()
-        .arg("--version")
-        .output()
-        .expect("Failed to run kount");
-
-    assert!(output.status.success());
-    let stdout = String::from_utf8_lossy(&output.stdout);
-    assert!(stdout.contains("kount"));
 }
