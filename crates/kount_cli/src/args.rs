@@ -41,6 +41,10 @@ pub struct Args {
     /// Show only totals and per-extension breakdown
     #[arg(long)]
     pub summary: bool,
+
+    /// Show only the top N files by line count
+    #[arg(long)]
+    pub top: Option<usize>,
 }
 
 impl Args {

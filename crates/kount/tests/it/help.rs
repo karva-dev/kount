@@ -5,7 +5,7 @@ use crate::kount_snapshot;
 fn help_output() {
     let ctx = TestContext::new();
 
-    kount_snapshot!(ctx.filters(), ctx.command().arg("--help"), @r"
+    kount_snapshot!(ctx.filters(), ctx.command().arg("--help"), @"
     success: true
     exit_code: 0
     ----- stdout -----
@@ -23,6 +23,7 @@ fn help_output() {
           --no-ignore    Include hidden files, ignore .gitignore
           --json         Output as JSON
           --summary      Show only totals and per-extension breakdown
+          --top <TOP>    Show only the top N files by line count
       -h, --help         Print help
       -V, --version      Print version
 
