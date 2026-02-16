@@ -11,3 +11,5 @@
 - PREFER short imports over fully-qualified paths for readability.
 - AVOID redundant comments and section separators (e.g., `// --- Section ---`) in test files. Use comments to explain invariants and why something unusual was done, not to narrate code.
 - PREFER function comments over inline comments.
+- ALWAYS use 'cargo insta accept' to accept new snapshots, NEVER write them manually.
+- ALWAYS run `uvx prek run -a` at the end of a task.

@@ -90,6 +90,19 @@ impl TestContext {
         command
     }
 
+    /// Create a file under the test root with the given number of lines.
+    pub fn create_file(&self, name: &str, lines: usize) {
+        use std::fmt::Write;
+        let content = (1..=lines).fold(String::new(), |mut acc, i| {
+            let _ = writeln!(acc, "line {i}");
+            acc
+        });
+        self.root
+            .child(name)
+            .write_str(&content)
+            .unwrap_or_else(|_| panic!("Failed to write file: {name}"));
+    }
+
     /// Read a file and return its contents as a string.
     pub fn read_file(&self, path: &str) -> String {
         std::fs::read_to_string(self.root.join(path))
